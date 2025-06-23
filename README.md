@@ -7,8 +7,8 @@
 
 - **Môn học:** CS105 - Đồ họa máy tính  
 - **Tên đồ án:** Website 3D mô phỏng trường Đại học Công nghệ Thông tin  
-- **Giáo viên hướng dẫn:** [Tên giáo viên hướng dẫn]  
-- **Nhóm:** [Số nhóm nếu có]
+- **Giáo viên hướng dẫn:** ThS. Cáp Phạm Đình Thăng  
+- **Nhóm:** 13
 
 ### 🔹 Thành viên
 
@@ -36,11 +36,18 @@ Không hướng đến tái hiện chính xác chi tiết từng công trình, m
 
 ### 🔧 1. Cài đặt Node.js (nếu chưa có)
 
-Tải tại: [https://nodejs.org](https://nodejs.org)
+Tải và cài đặt Node.js tại: [https://nodejs.org](https://nodejs.org)
 
 ---
 
-### 📥 2. Cài thư viện
+### 🗂️ 2. Giải nén mô hình 3D
+
+- Tìm file `y_uit_export.zip` trong thư mục dự án hoặc được cung cấp kèm.
+- Giải nén để lấy file mô hình 3D
+
+---
+
+### 📥 3. Cài thư viện
 
 Tại thư mục gốc của dự án, mở terminal và chạy:
 
@@ -49,7 +56,7 @@ npm install
 
 ```
 ---
-### ▶️ 3. Chạy chương trình
+### ▶️ 4. Chạy chương trình
 
 Sau khi cài đặt đầy đủ các thư viện, chạy lệnh sau để khởi động dự án:
 
