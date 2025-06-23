@@ -1,0 +1,386 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+:root {
+  --uit-blue: #486bc2;
+  --pastel-blue: #717dad;
+}
+
+.light-theme {
+  --default-bg: var(--uit-blue);
+}
+
+.dark-theme {
+  --default-bg: var(--pastel-blue);
+}
+
+/* Experience */
+#experience {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+#experience-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Utilities */
+.hidden {
+  display: none;
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--default-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 12px solid white;
+  z-index: 1000;
+}
+
+.loading-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 36px;
+}
+
+.enter-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 36px;
+  background: var(--default-bg);
+  border: 3px solid white;
+  padding: 8px 20px;
+  opacity: 0;
+}
+
+.enter-button:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: var(--default-bg);
+}
+
+.instructions {
+  z-index: 1000;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 26px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal */
+.modal-bg-overlay {
+  z-index: 750;
+  height: 100%;
+  width: 100%;
+  background-color: #31313159;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* Đặt ở cuối style.css */
+
+/* ---------- Modal hiển thị thông tin ---------- */
+.modal {                         /* hoặc .modal-project nếu bạn đặt tên khác */
+  position: fixed;              /* thoát khỏi luồng, bám theo viewport */
+  top: 50%;                     /* điểm neo giữa chiều dọc  */
+  left: 50%;                    /* điểm neo giữa chiều ngang */
+  transform: translate(-50%, -50%); /* dịch ngược 50% chính giữa  */ /* :contentReference[oaicite:0]{index=0} */
+  background: rgba(255,255,255,.95);
+  padding: 1.25rem 2rem;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  z-index: 1001;
+}
+
+/* ---------- Nhãn (label) dùng CSS2DRenderer, nếu có ---------- */
+.label {
+  position: absolute;
+  transform: translate(-50%, -50%);   /* giữ tâm nhãn nằm đúng tọa độ 3D */ /* :contentReference[oaicite:1]{index=1} */
+  pointer-events: none;
+  font-weight: 600;
+  color: #111;
+}
+
+/* ---------- Ngăn tràn ngang toàn trang ---------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;                 /* tránh xuất hiện thanh cuộn ngang */ /* :contentReference[oaicite:2]{index=2} */
+}
+
+/* Canvas Three.js phủ kín màn hình mà không gây lệch */
+canvas {
+  display: block;
+  width: 100%;        /* KHÔNG dùng 100vw để khỏi tính cả thanh cuộn */ /* :contentReference[oaicite:3]{index=3} */
+  height: 100vh;
+}
+
+
+
+.modal-wrapper {
+  padding: 12px;
+}
+
+.modal-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #fff;
+  margin-bottom: 12px;
+}
+
+.modal-exit-button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0px 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-exit-button:hover {
+  background: #fff;
+  border: 2px solid #fff;
+  color: var(--default-bg);
+  padding: 0px 14px;
+  cursor: pointer;
+}
+
+.modal-title {
+  font-size: 32px;
+}
+
+.modal-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-project-description {
+  font-size: 18px;
+  white-space: pre-line; /* tôn trọng ký tự \n */
+}
+
+.modal-project-visit-button {
+  background: #fff;
+  border: 2px solid #fff;
+  color: var(--default-bg);
+  padding: 8px 0px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+.modal-project-visit-button:hover {
+  background: var(--default-bg);
+  border: 2px solid #fff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Mobile controls */
+
+.mobile-control {
+  z-index: 500;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  background: var(--default-bg);
+  height: 64px;
+  width: 64px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+  padding: 8px;
+  transition: background 0.4s ease-in;
+  transition-delay: 0.1s;
+}
+
+.left-arrow {
+  transform: translate(calc(-100% - 32px), -50%) rotate(270deg);
+}
+
+.right-arrow {
+  transform: translate(32px, -50%) rotate(90deg);
+}
+
+.up-arrow {
+  transform: translate(-50%, calc(-100% - 32px)) rotate(0deg);
+}
+
+.down-arrow {
+  transform: translate(-50%, 32px) rotate(180deg);
+}
+
+/* Toggle Theme Button */
+.theme-mode-toggle-button {
+  z-index: 500;
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  background: var(--default-bg);
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.4s ease-in;
+  transition-delay: 0.1s;
+}
+
+/* Toggle Audio Button */
+.audio-toggle-button {
+  z-index: 500;
+  position: absolute;
+  top: 32px;
+  right: 96px;
+  background: var(--default-bg);
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.4s ease-in;
+  transition-delay: 0.1s;
+}
+
+.second-icon,
+.second-icon-two {
+  display: none;
+}
+
+#speech {
+  display: none;
+  position: absolute;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: monospace;
+  pointer-events: none;
+}
+
+#speech.speech-bubble {
+  position: absolute;
+  /* căn gốc để transform(-50%, -100%) dịch 
+     mid-bottom của div tới (left, top) đã set */
+  transform-origin: 50% 100%;
+  background: #ffffff;
+  color: #007bff;
+  padding: 8px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+#speech.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;      /* đuôi nhô ra dưới đáy */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+}
+
+
+
+/* Media Queries */
+
+@media (max-width: 1100px) {
+  .mobile-control {
+    display: flex;
+  }
+}
+
+@media (max-width: 519px) {
+  .enter-button,
+  .instructions {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 396px) {
+  .modal-title {
+    font-size: 26px;
+  }
+}
+
+
+/* RESET chung – đặt đầu file */
+*,*::before,*::after{box-sizing:border-box;}
+
+html,body{
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;      /* chặn cuộn ngang */      /*:contentReference[oaicite:1]{index=1}*/
+}
+
+/* Canvas Three.js luôn kín màn hình */
+canvas{
+  display:block;
+  width:100%;            /* ĐỪNG dùng 100vw để khỏi lệch thanh cuộn */ /*:contentReference[oaicite:2]{index=2}*/
+  height:100vh;
+}
+
+/* Khung điều chỉnh sáng/tối, âm thanh… cố định góc phải */
+#ui-controls,
+.dg.ac{                  /* nếu dùng dat.GUI */              /*:contentReference[oaicite:3]{index=3}*/
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  z-index:1000;
+}

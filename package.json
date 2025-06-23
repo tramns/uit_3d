@@ -1,0 +1,6 @@
+{
+  "name": "bellas-park",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
