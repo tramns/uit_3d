@@ -62,6 +62,8 @@ Sau khi cài đặt đầy đủ các thư viện, chạy lệnh sau để khở
 
 ```bash
 npm run start
+```
 
-## 🌟 Thành quả
-![z7085126945068_b59523de6a2e6806e6d8e11481139afd](https://github.com/user-attachments/assets/4411aa79-5fa0-4352-8cbd-0b048d784935)
+## 🌟 Snapshot
+![z7085127032394_4f1f1079c6e5cf86754e25dee61685f6](https://github.com/user-attachments/assets/0ed3b46d-2770-449a-aa1e-d9dbdc8d6f66)
+
